@@ -134,23 +134,23 @@ class Tag extends Layer
 		clip: true
 		
 		@label = new TextLayer
-			width: 0.6*@options.width
+			width: 0.9*@options.width
 			x: Align.left(8), y: Align.center
 			fontSize: 16
 			name: ".label"
 			color: "black"
 			clip: true
-		
-		@trendLabel = new TextLayer
-			fontSize: 12
-			name: ".trendLabel"
-			color: "black"
-			clip: true
-			
-		@trendIcon = new Layer
-			width: 1.83*0.3*@options.height, height: 0.3*@options.height
-			y: Align.center
-
+# 		
+# 		@trendLabel = new TextLayer
+# 			fontSize: 12
+# 			name: ".trendLabel"
+# 			color: "black"
+# 			clip: true
+# 			
+# 		@trendIcon = new Layer
+# 			width: 1.83*0.3*@options.height, height: 0.3*@options.height
+# 			y: Align.center
+# 
 			
 		super @options
 		
@@ -159,15 +159,15 @@ class Tag extends Layer
 		@label.centerY()
 		@label.backgroundColor = "transparent"
 		
-		@trendLabel.parent = @
-		@trendLabel.centerY()
-		@trendLabel.x = @trendIcon.x +  @trendIcon.width + 4
-		@trendLabel.backgroundColor = "transparent"
-		
-		@trendIcon.parent = @
-		@trendIcon.centerY()
-		@trendIcon.x = @label.x + @label.width + 4
-		@trendIcon.image = "images/trend.png"
+# 		@trendLabel.parent = @
+# 		@trendLabel.centerY()
+# 		@trendLabel.x = @trendIcon.x +  @trendIcon.width + 4
+# 		@trendLabel.backgroundColor = "transparent"
+# 		
+# 		@trendIcon.parent = @
+# 		@trendIcon.centerY()
+# 		@trendIcon.x = @label.x + @label.width + 4
+# 		@trendIcon.image = "images/trend.png"
 		
 yPosition = tittle.height + tittle.y
 
@@ -182,7 +182,7 @@ for tagObject, tagIndex in tags
 	tagLayer.x = xPosition
 	tagLayer.y = yPosition
 	tagLayer.label.text = ""
-	tagLayer.trendLabel.text = ""	
+# 	tagLayer.trendLabel.text = ""	
 	tagLayer.visible = false
 	tagLayers.push(tagLayer)	
 
@@ -201,13 +201,13 @@ focusedFrame.on "change:currentPage", ->
 		for tagObject, tagIndex in focusedBucket.data.tags when tagIndex < tags.length
 			tagLayer = tagLayers[tagIndex]
 			
-			tagLayer.label.text = tagObject.name.slice(0, 12);
-			tagLayer.trendLabel.x = tagLayer.trendIcon.x + tagLayer.trendIcon.width + 4
-			tagLayer.trendIcon.x = tagLayer.label.x + tagLayer.label.width + 4
-			roundOff = Math.round(tagObject.noOfShares/10000)
-			if roundOff > 100 
-				roundOff = Math.round(roundOff/100)
-			tagLayer.trendLabel.text = roundOff + "k"
+			tagLayer.label.text = tagObject.name.slice(0, 16);
+# 			tagLayer.trendLabel.x = tagLayer.trendIcon.x + tagLayer.trendIcon.width + 4
+# 			tagLayer.trendIcon.x = tagLayer.label.x + tagLayer.label.width + 4
+# 			roundOff = Math.round(tagObject.noOfShares/10)
+# 			if roundOff > 100 
+# 				roundOff = Math.round(roundOff/100)
+# 			tagLayer.trendLabel.text = roundOff + "k"
 			tagLayer.visible = true	
 
 		for bucket, index in buckets 
